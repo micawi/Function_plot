@@ -2,6 +2,7 @@ from PyQt5.QtWidgets import QGridLayout, QPushButton, QLineEdit, QLabel, QComboB
 from PyQt5.QtGui import QFont;
 from PyQt5.QtWidgets import QApplication, QWidget;
 from errorwindow import ErrorWindow;
+from plotwindow import PlotWindow;
 
 appVersion: str = "v1.0";
 
@@ -102,8 +103,8 @@ class MainWindow(QWidget):
             return;
 
         try:
-            min: float = float(minStr);
-            max: float = float(maxStr);
+            min: int = int(minStr);
+            max: int = int(maxStr);
         except:
             errWindow = ErrorWindow("falserange", self.font, self.fontSize);
             errWindow.exec_();
@@ -118,9 +119,11 @@ class MainWindow(QWidget):
             return;            
         
         try:
-            inc: int = int(incStr);
+            inc: float = float(incStr);
         except:
             errWindow = ErrorWindow("falseinc", self.font, self.fontSize);
             errWindow.exec_();
             self.incLine.setText("");
             return;
+
+        plotWindow = PlotWindow(functionVar, functionStr, min, max, inc);

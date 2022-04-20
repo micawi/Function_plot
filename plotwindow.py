@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plot;
 from PyQt5.QtWidgets import QWidget;
 from numpy import linspace;
+from math import exp, log, log10;
 
 
 class PlotWindow(QWidget):
@@ -22,8 +23,10 @@ class PlotWindow(QWidget):
         self.xValues = linspace(min, max, numValues);
         self.yValues = [];
 
+        self.fnc = self.fnc.replace("^", "**");
         for x in self.xValues:
             currFnc: str = self.fnc.replace(self.varStr, str(x));
+            currFnc = currFnc.replace("e" + str(x) + "p", "exp");
             currVal: float = eval(currFnc);
             self.yValues.append(currVal);
         
@@ -31,6 +34,4 @@ class PlotWindow(QWidget):
         plot.xlabel(self.varStr);
         plot.ylabel("Function value");
         plot.show();
-
-        self.show();
                 

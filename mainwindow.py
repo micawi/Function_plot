@@ -127,3 +127,4 @@ class MainWindow(QWidget):
             return;
 
         plotWindow = PlotWindow(functionVar, functionStr, min, max, inc);
+        plotWindow.show();

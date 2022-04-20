@@ -24,6 +24,7 @@ class PlotWindow(QWidget):
         self.yValues = [];
 
         self.fnc = self.fnc.replace("^", "**");
+        self.fnc = self.fnc.replace(self.varStr, "(" + self.varStr + ")");
         for x in self.xValues:
             currFnc: str = self.fnc.replace(self.varStr, str(x));
             currFnc = currFnc.replace("e" + str(x) + "p", "exp");
